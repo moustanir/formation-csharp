@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace LittleExercices
 {
@@ -58,11 +59,107 @@ namespace LittleExercices
             return $"{number} is a prime number";
         }
         
-        
+        /// <summary>
+        /// Returns the factorial of a number
+        /// </summary>
+        /// <param name="number"></param>
+        /// <returns></returns>
+        public static string Exercice5(int number)
+        {
+            int result = 1;
+            if (number < 1)
+            {
+                return "Cannot do the factorial of negative number";
+            }
+            for (int index = 2; index <= number; index++)
+            {
+                result *= index;
+            }
+            return $"The factorial of {number} is {result}";
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="num"></param>
+        /// <returns></returns>
+        public static string Exercice6(int num)
+        {
+            String x = "";
+
+            // Changed num variable to string, 
+            // and calculated the length (number of digits)
+            int order = (num.ToString()).Length;
+
+            // initialize sum
+            int sum = 0;
+
+            // find the sum of the cube of each digit
+            int temp = num;
+            while (temp > 0)
+            {
+                int digit = temp % 10;
+                sum += (int)Math.Pow(digit, order);
+                temp = temp / 10;
+            }
+
+            // display the result
+            if (num == sum)
+                x = num + " is an Armstrong number";
+            else
+                x = num + " is not an Armstrong number";
+            return x;
+        }
+        /// <summary>
+        /// Check if a number is ugly or not
+        /// </summary>
+        /// <param name="number"></param>
+        /// <returns></returns>
+        public static bool Exercice7(int number)
+        {
+            List<int> primeFactors = new List<int>();
+            if(number < 1)
+            {
+                throw new Exception();
+            }
+            for(int index = 2; index < number; index++)
+            {
+                if (number % index == 0)
+                {
+                    primeFactors.Add(index);
+                }
+            }
+            if(primeFactors.Count == 1 && (primeFactors.Contains(2) || primeFactors.Contains(3) || primeFactors.Contains(5)))
+            {
+                return true;
+            }
+            return false;
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="number"></param>
+        /// <returns></returns>
+        public static int Exercice8(int number)
+        {
+            int a = 2, b = 1, c;
+
+            if (number == 0)
+                return a;
+
+            // generating number 
+            for (int index = 2; index <= number; index++)
+            {
+                c = a + b;
+                a = b;
+                b = c;
+            }
+
+            return b;
+        }
 
         static void Main(string[] args)
         {
-            Console.WriteLine(Exercice4(26));
+            Console.WriteLine(Exercice7(26));
             Console.ReadLine();
         }
     }
