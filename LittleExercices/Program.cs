@@ -11,7 +11,7 @@ namespace LittleExercices
         /// <param name="numberA"></param>
         /// <param name="numberB"></param>
         /// <returns></returns>
-        public int Exercice1(int numberA, int numberB)
+        public static int Exercice1(int numberA, int numberB)
         {
             return numberA + numberB;
         }
@@ -31,24 +31,24 @@ namespace LittleExercices
         /// </summary>
         /// <param name="n"></param>
         /// <returns></returns>
-        public int Exercise3(int n)
+        public static int Exercise3(int n)
         {
             int result = 0;
-            for(int index = 1; index <= n; index++)
+            for (int index = 1; index <= n; index++)
             {
                 result += index;
             }
             return result;
         }
+
         /// <summary>
         /// Returns info if number entered is a prime number or not
-        /// 
         /// </summary>
         /// <param name="number"></param>
         /// <returns>String which contains informations</returns>
-        public string Exercice4(int number)
+        public static string Exercice4(int number)
         {
-            for(int index = 2; index < number; index++)
+            for (int index = 2; index < number; index++)
             {
                 if (number % index == 0)
                 {
@@ -57,9 +57,13 @@ namespace LittleExercices
             }
             return $"{number} is a prime number";
         }
+        
+        
+
         static void Main(string[] args)
         {
-               
+            Console.WriteLine(Exercice4(26));
+            Console.ReadLine();
         }
     }
 }
