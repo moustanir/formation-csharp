@@ -8,6 +8,8 @@ namespace Csharp_Threads
         static void NewThread()
         {
             Console.WriteLine("I am a new thread");
+            Thread.Sleep(1000);
+            Console.WriteLine("Thread finished to sleep.");
         }
 
         static void Main(string[] args)
@@ -17,6 +19,7 @@ namespace Csharp_Threads
             Console.WriteLine($"Starting new thread...");
             ThreadStart newTh = new ThreadStart(NewThread);
             Thread thread = new Thread(newTh);
+            thread.Start();
             Console.WriteLine($"Ending new thread...");
             Console.ReadLine();
         }
