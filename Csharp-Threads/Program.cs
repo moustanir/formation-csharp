@@ -6,25 +6,26 @@ namespace Csharp_Threads
 {
     class Program
     {
-        static void CustomThread()
-        {
-            for (int index = 0; index < 100; index++)
-            {
-                Console.WriteLine("Thread Process: {0}", index);
-                Thread.Sleep(0);
-            }
-        }
-
         static void Main(string[] args)
         {
-            Thread t = new Thread(new ThreadStart(CustomThread));
-            t.Start();
-            for (int index = 0; index < 10; index++)
+            Task<Int32[]> parent = Task.Run(() =>
             {
-                Console.WriteLine("This is the main the main thread !");
-                Thread.Sleep(0);
-            }
-            t.Join();
+                var results = new Int32[3];
+                new Task(() => results[0] = 0, TaskCreationOptions.AttachedToParent).Start();
+                new Task(() => results[1] = 1, TaskCreationOptions.AttachedToParent).Start();
+                new Task(() => results[2] = 2, TaskCreationOptions.AttachedToParent).Start();
+                return results;
+            });
+
+            var finalTask = parent.ContinueWith(parentTask =>
+            {
+                foreach (int index in parentTask.Result)
+                {
+                    Console.WriteLine(index);
+                }
+            });
+            Console.WriteLine("Press any key to finish the program...");
+            Console.ReadLine();
         }
     }
 }
